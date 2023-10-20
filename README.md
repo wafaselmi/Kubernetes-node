@@ -1,20 +1,33 @@
 # Minikube Setup for Windows:
-Pre-requisites : Docker Desktop - Kubectl - Minikube
-start Minikube :
-`minikube start --driver=hyperv`
-Check Cluster :
-`kubectl get nodes`
-Clone Repo :
-`git clone https://github.com/wafaselmi/Kubernetes-node.git`
-Deploy to minikube :
-`minikube docker-env | Invoke-Expression`
-`kubectl apply -f manifests/deployment.yaml`
-`kubectl apply -f manifests/service.yaml`
-Access the Application:
-Get the minikube IP: `minikube ip`
-And copy it to your browser.
-Clean up :
-`minikube delete`
+- Pre-requisites : Docker Desktop / Kubectl / Minikube
+<br>
+
+- start Minikube :
+```minikube start --driver=hyperv```
+<br>
+
+- Check Cluster :
+```kubectl get nodes```
+<br>
+
+- Clone Repo :
+```git clone https://github.com/wafaselmi/Kubernetes-node.git```
+<br>
+
+- Deploy to minikube :
+```minikube docker-env | Invoke-Expression```
+```kubectl apply -f manifests/deployment.yaml```
+```kubectl apply -f manifests/service.yaml```
+<br>
+
+- Access the Application:
+- Get the minikube IP: 
+```minikube ip```
+- Copy it to your browser.
+<br>
+
+- Clean up : 
+```minikube delete```
 -----------------------------------
 # Follow-up Questions:
 
