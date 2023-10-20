@@ -1,13 +1,47 @@
-# ![Node/Express/Mongoose Example App](project-logo.png)
+# Minikube Setup for Windows:
+Pre-requisites : Docker Desktop - Kubectl - Minikube
+start Minikube :
+`minikube start --driver=hyperv`
+Check Cluster :
+`kubectl get nodes`
+Clone Repo :
+`git clone https://github.com/wafaselmi/Kubernetes-node.git`
+Deploy to minikube :
+`minikube docker-env | Invoke-Expression`
+`kubectl apply -f manifests/deployment.yaml`
+`kubectl apply -f manifests/service.yaml`
+Access the Application:
+Get the minikube IP: `minikube ip`
+And copy it to your browser.
+Clean up :
+`minikube delete`
+-----------------------------------
+# Follow-up Questions:
 
-[![Build Status](https://travis-ci.org/anishkny/node-express-realworld-example-app.svg?branch=master)](https://travis-ci.org/anishkny/node-express-realworld-example-app)
+## Kubernetes Setup:
+I currently have no access to any cloud provider so for this setup I used a local minikube setup for development. 
+For production, I think that opting for a managed Kubernetes service like GKE, EKS, or AKS is ideal as it offers easy scalability, high availability, and managed updates.
+For the next cluster, the setup would still depend on my accessibility to a cloud provider, as I might consider a managed Kubernetes setup in the cloud for scalability and management benefits.
 
-> ### Example Node (Express + Mongoose) codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) API spec.
+## Improving Application Setup:
 
-<a href="https://thinkster.io/tutorials/node-json-api" target="_blank"><img width="454" src="https://raw.githubusercontent.com/gothinkster/realworld/master/media/learn-btn-hr.png" /></a>
+a. I would certainly opt to improve our setup through a CI/CD pipeline to automate the build and deploy processes. 
+We have different tools like Jenkins, GitLab CI, or GitHub Actions.. The choice will depend on many factors but personally I would go for Gitlab CI or GitHub Actions, depending on which platform we are using, as they are natively integrated to their respective platforms so no complexities and we will be using one platform to manage everything.
+b. Templating the setup can be highly beneficial, especially in we are anticipate reusability, need consistency, and want to automate our CI/CD or infrastructure setup.
+Helm is a great choice for templating Kubernetes deployments as it provides package management features, it wasn't used for our current setup but would be added if we envision reusability.
+c. Monitoring is crucial for ensuring the health and performance of our application. 
+Prometheus for metrics and Grafana for visualization would be a great combo of tools . We may consider monitoring :
+- Resource Utilization(CPU/ Memory usage)
+- Kubernetes-Specific Metrics( Pod and Node Status)
+- Application Health (Error Rate)
+Also, we may consider keeping an eye on our logs and opt for different logging solutions such as Elasticsearch.
+## Scaling Across Regions:
+To do so we may :
+- Use a global load balancer that routes traffic to the nearest deployment based on latency.
+- Set up Kubernetes clusters in different regions and deploy the application to all of them.
+- Use a global database solution or replicate the database across regions, ensuring data consistency.
 
-This repo is functionality complete — PRs and issues welcome!
-
+------------------------------------------
 # Getting started
 
 To get the Node server running locally:
